@@ -9,7 +9,8 @@ import { store } from './store'
 import Comments from './pages/Comments'
 
 // compoenents
-import  AllProduct  from './pages/AllProduct'
+import AllProduct from './pages/AllProduct'
+import NewComment from './pages/NewComment';
 
 
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
     element:<Comments />
     
     
+  },
+  {
+    path: "/NewComment/:id",
+    element: <NewComment />,
   }
  
  

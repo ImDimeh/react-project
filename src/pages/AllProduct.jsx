@@ -2,22 +2,23 @@ import React from "react";
 
 import { useGetAllProductsQuery } from "../api/productApi";
 import ProductComponents from "../components/productComponents";
+import {styled} from 'styled-components'
 
 
 
 
 function Header() {
   let { data, isLoading } = useGetAllProductsQuery();
-  console.log(data, isLoading, useGetAllProductsQuery);
+
   if (isLoading) {
     return <div></div>;
   }
 
   return (
-    <div>
+    <ModernBlueContainer>
       <h1>There is {data.length} article</h1>
       <hr />
-    </div>
+    </ModernBlueContainer>
   );
 }
 
@@ -25,7 +26,7 @@ function AllProducts() {
   let { data, isLoading } = useGetAllProductsQuery();
 
   return (
-    <div>
+    <ModernBlueContainer>
       <Header />
 
       {isLoading && !data ? (
@@ -35,8 +36,20 @@ function AllProducts() {
           <ProductComponents key={product.id} product={product} />
         ))
       )}
-    </div>
+    </ModernBlueContainer>
   );
 }
 
 export default AllProducts;
+
+
+const ModernBlueContainer = styled.div`
+  background-color: #282c34;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+`;
+
