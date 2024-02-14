@@ -1,20 +1,26 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { usePostCommentMutation } from '../api/productApi'
+import { usePostCommentMutation } from "../api/productApi";
 import { useParams } from "react-router-dom";
-
 
 const NewComment = () => {
   const [username, setUsername] = useState("");
   const [text, setText] = useState("");
   const { id } = useParams();
- 
 
-  const handleSubmit = (e) => {
+  // Utilisez usePostCommentMutation pour obtenir la fonction de mutation
+  const postCommentMutation = usePostCommentMutation();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Username:", username);
     console.log("Text:", text);
-    usePostCommentMutation( {username: username, comment: text})
+    postCommentMutation({
+      username,
+      comment: text,
+    });
+
+  
   };
 
   return (
@@ -38,7 +44,6 @@ const NewComment = () => {
     </Container>
   );
 };
-
 
 const Container = styled.div`
   background-color: #2c3e50; /* Bleu foncé moderne */
