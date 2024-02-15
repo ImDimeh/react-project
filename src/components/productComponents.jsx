@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useGetCommentsQuery } from "../api/productApi";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 function ProductComponents(props) {
   const { comments, isLoading } = useGetCommentsQuery(props.product.id);
@@ -17,6 +18,12 @@ function ProductComponents(props) {
             <h2>PRIX: {props.product.price}</h2>
             <QuantityInfo>QUANTITé: {props.product.quantity}</QuantityInfo>
           </ProductInfo>
+          <StyledLink to={`/comments/${props.product.id}`}>
+            <StyledButton>voir les commentaire</StyledButton>
+          </StyledLink>
+          <StyledLink to={`/NewComment/${props.product.id}`}>
+            <StyledButton>ajouter votre commentaire</StyledButton>
+          </StyledLink>
         </div>
       )}
     </ProductCard>
@@ -24,6 +31,22 @@ function ProductComponents(props) {
 }
 export default ProductComponents;
 
+
+const StyledButton = styled.button`
+  background-color: #1e2a38; /* Couleur de fond */
+  color: #ffffff; /* Couleur du texte */
+  padding: 10px 15px; /* Espacement intérieur du bouton */
+  border: none; /* Supprime la bordure */
+  border-radius: 5px; /* Coins arrondis */
+  font-size: 14px; /* Taille de la police */
+  cursor: pointer; /* Curseur pointeur au survol */
+`;
+
+// Appliquez le style aux liens
+const StyledLink = styled(Link)`
+  text-decoration: none; /* Supprime le soulignement du lien */
+  margin-right: 10px; /* Marge à droite pour espacement */
+`;
 
 
 
